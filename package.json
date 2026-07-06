@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "repl": "tsx src/repl.ts",
+    "run": "tsx src/run.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

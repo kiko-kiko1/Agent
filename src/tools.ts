@@ -8,14 +8,16 @@ const execAsync = promisify(exec);
 
 export const readFileTool: Tool = createTool(
   "read_file",
-  "读取文件内容",
+  "读取指定路径的文件内容",
   {
     file_path: {
       type: "string",
-      description: "要读取的文件路径",
+      description: "文件的相对路径或绝对路径",
     },
   },
-  async ({ file_path }) => {
+  async (res) => {
+    const { file_path } = res;
+    console.log("要读的文件地址file_path:", res, file_path);
     try {
       const filePath = String(file_path);
       const resolvedPath = path.resolve(filePath);
@@ -24,7 +26,7 @@ export const readFileTool: Tool = createTool(
     } catch (error) {
       return `读取文件失败: ${(error as Error).message}`;
     }
-  }
+  },
 );
 
 export const writeFileTool: Tool = createTool(
@@ -49,7 +51,7 @@ export const writeFileTool: Tool = createTool(
     } catch (error) {
       return `写入文件失败: ${(error as Error).message}`;
     }
-  }
+  },
 );
 
 export const listFilesTool: Tool = createTool(
@@ -82,7 +84,7 @@ export const listFilesTool: Tool = createTool(
     } catch (error) {
       return `列出目录失败: ${(error as Error).message}`;
     }
-  }
+  },
 );
 
 export const bashTool: Tool = createTool(
@@ -106,7 +108,7 @@ export const bashTool: Tool = createTool(
       const err = error as Error & { stdout?: string; stderr?: string };
       return `命令执行失败: ${err.message}\nstderr: ${err.stderr || ""}`;
     }
-  }
+  },
 );
 
 export const tools: Tool[] = [

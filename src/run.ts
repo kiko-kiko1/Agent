@@ -9,6 +9,6 @@ agent.setSystemPrompt(
 tools.forEach((tool) => agent.addTool(tool));
 
 const result = await agent.run(
-  "帮我列出当前目录的文件结构，并且读一下agent.ts文件的内容",
+  "帮我在 src 目录下创建一个 hello.ts 文件，内容是打印 'Hello, Agent!'",
 );
 console.log("✅ 最终回答：", result);
