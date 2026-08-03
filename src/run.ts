@@ -1,11 +1,16 @@
 // src/run.ts
-import { Agent } from "./agent.js";
-import { tools } from "./tools.js";
+import { Agent } from "./agent.ts";
+import { approveMiddleware, loggerMiddleware } from "./middlewares.ts";
+import { tools } from "./tools.ts";
 
-const agent = new Agent();
+const agent = new Agent({});
+
 agent.setSystemPrompt(
   "你是一个文件操作助手，可以读取文件、写入文件、列出目录结构和执行 shell 命令。",
 );
+
+agent.setMiddleware([loggerMiddleware]);
+
 tools.forEach((tool) => agent.addTool(tool));
 
 const result = await agent.run(

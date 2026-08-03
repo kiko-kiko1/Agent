@@ -1,4 +1,4 @@
-import { createTool, type Tool } from "./agent.js";
+import { createTool, type Tool } from "./agent.ts";
 import fs from "fs/promises";
 import path from "path";
 import { exec } from "child_process";
